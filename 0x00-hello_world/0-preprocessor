@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -E "$CFILE" > c && tail c
+gcc -E "$CFILE" | tail -n +5 > c
