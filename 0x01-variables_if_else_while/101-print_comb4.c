@@ -12,7 +12,7 @@ int onesDigit;
 for (hundredsDigit = 0; hundredsDigit <= 7; hundredsDigit++)
 {
 for (tensDigit = hundredsDigit + 1; tensDigit <= 8; tensDigit++)
-{			
+{
 for (onesDigit = tensDigit + 1; onesDigit <= 9; onesDigit++)
 {
 putchar(hundredsDigit + '0');
