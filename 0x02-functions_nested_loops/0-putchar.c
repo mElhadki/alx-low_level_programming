@@ -2,7 +2,10 @@
 #include "main.h"
 /**
  * Entry point of the program.
- * Prints "_putchar" and returns 0.
+ *
+ * This function prints "_putchar" and returns 0.
+ *
+ * @return 0 indicating successful execution.
  */
 int main(void)
 {
