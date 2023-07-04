@@ -19,7 +19,9 @@ while (j < 8)
 _putchar (a[i][j]);
 j++;
 }
-_putchar ('\n'); /*print new line*/
-i++; /*add +1*/
+_putchar ('\n'); 
+/*print new line*/
+i++; 
+/*add +1*/
 }
 }
