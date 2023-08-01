@@ -1,4 +1,4 @@
-#include "holberton.h"²:wq
+#include "holberton.h"
 #include <unistd.h>
 
 /**
