@@ -1,87 +1,38 @@
 #include "holberton.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /**
- * number - function to calculate number of words
- * @str: string being passed to check for words
+ * argstostr - Concatenates all the arguments of the program
+ * @ac: The number of arguments
+ * @av: An array of pointers to the arguments
  *
- * Return: number of words
+ * Return: A pointer to the new string, or NULL on failure
  */
-int number(char *str)
+char *argstostr(int ac, char **av)
 {
-	int a, num = 0;
+    int i, j, k = 0, total_len = 0;
+    char *str;
 
-	for (a = 0; str[a] != '\0'; a++)
-	{
-		if (*str == ' ')
-			str++;
-		else
-		{
-			for (; str[a] != ' ' && str[a] != '\0'; a++)
-				str++;
-			num++;
-		}
-	}
-	return (num);
-}
-/**
- * free_everything - frees the memory
- * @string: pointer values being passed for freeing
- * @i: counter
- */
-void free_everything(char **string, int i)
-{
-	for (; i > 0;)
-		free(string[--i]);
-	free(string);
-}
+    if (ac == 0 || av == NULL)
+        return (NULL);
 
-/**
- * strtow - function that splits string into words
- * @str: string being passed
- * Return: null if string is empty or null or function fails
- */
-char **strtow(char *str)
-{
-	int total_words = 0, b = 0, c = 0, length = 0;
-	char **words, *found_word;
+    for (i = 0; i < ac; i++)
+    {
+        for (j = 0; av[i][j]; j++)
+            total_len++;
+    }
 
-	if (str == 0 || *str == 0)
-		return (NULL);
-	total_words = number(str);
-	if (total_words == 0)
-		return (NULL);
-	words = malloc((total_words + 1) * sizeof(char *));
-	if (words == 0)
-		return (NULL);
-	for (; *str != '\0' &&  b < total_words;)
-	{
-		if (*str == ' ')
-			str++;
-		else
-		{
-			found_word = str;
-			for (; *str != ' ' && *str != '\0';)
-			{
-				length++;
-				str++;
-			}
-			words[b] = malloc((length + 1) * sizeof(char));
-			if (words[b] == 0)
-			{
-				free_everything(words, b);
-				return (NULL);
-			}
-			while (*found_word != ' ' && *found_word != '\0')
-			{
-				words[b][c] = *found_word;
-				found_word++;
-				c++;
-			}
-			words[b][c] = '\0';
-			b++; c = 0; length = 0; str++;
-		}
-	}
-	return (words);
+    str = malloc(total_len + ac + 1); // +1 for the newline character after each argument
+    if (str == NULL)
+        return (NULL);
+
+    for (i = 0; i < ac; i++)
+    {
+        for (j = 0; av[i][j]; j++)
+            str[k++] = av[i][j];
+        str[k++] = '\n'; // Add a newline character after each argument
+    }
+    str[k] = '\0'; // Add the null-terminator at the end
+
+    return (str);
 }
