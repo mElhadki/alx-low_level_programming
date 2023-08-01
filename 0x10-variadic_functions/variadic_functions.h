@@ -1,12 +1,14 @@
 #ifndef VARIADIC_FUNCTIONS_H
 #define VARIADIC_FUNCTIONS_H
+
+#include <stdarg.h>
+#include <stdio.h>
+
 /**
  * struct printer - Struct to handle printing functions
  * @symbol: The symbol representing the data type
  * @print: A function pointer to the print function
  */
-#include <stdarg.h>
-#include <stdio.h>
 
 typedef struct printer
 {
