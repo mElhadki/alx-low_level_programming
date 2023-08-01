@@ -1,16 +1,13 @@
-#include "holberton.h"
-
 /**
- * swap_int - change the values of ints
- * @a: int type
- * @b: int type
- * Return: Return swapped values
+ * swap_int - switches value of first input with the value of the second input.
+ * @a: First value to swap.
+ * @b: Second value to swap.
  */
 void swap_int(int *a, int *b)
 {
-	int c;
+	int temp;
 
-	c = *a;
+	temp = *a;
 	*a = *b;
-	*b = c;
-}}
+	*b = temp;
+}
