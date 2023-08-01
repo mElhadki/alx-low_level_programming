@@ -1,55 +1,19 @@
 #include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
-#include <stdbool.h>
 
 /**
- * coinConverter - Helper function that does all the mathematics
- * @i: Passed in variable from main for calculations
- * Return: The number of coins needed minimum for the passed in variable
- */
-int coinConverter(int i)
-{
-	int count = 0;
-
-	while (i != 0)
-	{
-		if (i % 10 == 9 || i % 10 == 7)
-			i -= 2;
-		else if (i % 25 == 0)
-			i -= 25;
-		else if (i % 10 == 0)
-			i -= 10;
-		else if (i % 5 == 0)
-			i -= 5;
-		else if (i % 2 == 0)
-		{
-			if (i % 10 == 6)
-				i -= 1;
-			else
-				i -= 2;
-		}
-		else
-			i -= 1;
-
-		count++;
-	}
-
-	return (count);
-}
-
-/**
- * main - Takes in exactly one argument for minimum coin count
- * @argc: Number of command line arguments
- * @argv: Array name
- * Return: 0 if exactly 1 argument is passed into this program, 1 otherwise
+ * main -  Minimum number of coins to make change
+ *
+ * @argc: size of argv array and number of command line arguments
+ *
+ * @argv: An array of size argc
+ *
+ * Return: 0
  */
 int main(int argc, char *argv[])
 {
-	int i, coin;
-
-	coin = 0;
+	int coins = 0, sum = 0;
 
 	if (argc != 2)
 	{
@@ -57,16 +21,36 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 
-	i = atoi(argv[1]);
+	sum = atoi(argv[1]);
 
-	if (i < 0)
-		printf("0\n");
-	else
+	if (sum < 0)
 	{
-		coin = coinConverter(i);
+		printf("0\n");
 
-		printf("%d\n", coin);
+		return (0);
 	}
 
+	while (sum / 25)
+	{
+		sum -= 25;
+		coins++;
+	}
+	while (sum / 10)
+	{
+		sum -= 10;
+		coins++;
+	}
+	while (sum / 5)
+	{
+		sum -= 5;
+		coins++;
+	}
+	while (sum / 2)
+	{
+		sum -= 2;
+		coins++;
+	}
+	coins += sum;
+	printf("%d\n", coins);
 	return (0);
 }
